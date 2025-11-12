@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-11-12
 
 ### Added
+
 - 🎉 **Initial public release**
 - Smart NuGet package management with three modes:
   - Safe mode: Clears temp/HTTP cache only (instant restore)
@@ -61,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reboot detection and deferred operations handling
 
 ### Safety Features
+
 - Hard protection for Downloads folder (including OneDrive redirection)
 - Process detection prevents file locks
 - System restore point creation (when available)
@@ -69,12 +71,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Error handling with graceful fallbacks
 
 ### Performance
+
 - 90%+ faster NuGet restore with selective purge (1-2 min vs 15-25 min)
 - Multi-user path expansion (single function handles all users)
 - Consolidated summary output (no per-file spam)
 - Efficient helper functions reduce duplication
 
 ### Documentation
+
 - Comprehensive README with usage examples
 - Clear parameter descriptions
 - In-script documentation with NuGet options comparison
@@ -84,6 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned Features
+
 - [ ] Support for more browsers (Brave, Opera, Vivaldi)
 - [ ] .NET workload cache cleanup
 - [ ] Package manager cache analysis (show sizes before cleanup)
@@ -98,9 +103,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version History
 
 ### v1.0.0 (2025-11-12)
+
 Initial public release with smart NuGet management
 
 ---
 
-**Full Changelog:** https://github.com/vit-h/windows-cleanup-script/commits/main
-
+**Full Changelog:** https://github.com/vit-h/windows-speedup-via-cleanup/commits/main

@@ -6,9 +6,10 @@ First off, thank you for considering contributing to this project! 🎉
 
 ### Reporting Bugs
 
-Before creating bug reports, please check the [existing issues](https://github.com/vit-h/windows-cleanup-script/issues) to avoid duplicates.
+Before creating bug reports, please check the [existing issues](https://github.com/vit-h/windows-speedup-via-cleanup/issues) to avoid duplicates.
 
 **When reporting a bug, include:**
+
 - Windows version (e.g., Windows 11 23H2)
 - PowerShell version (`$PSVersionTable.PSVersion`)
 - Full command you ran
@@ -17,9 +18,10 @@ Before creating bug reports, please check the [existing issues](https://github.c
 
 ### Suggesting Enhancements
 
-Enhancement suggestions are tracked as [GitHub Issues](https://github.com/vit-h/windows-cleanup-script/issues).
+Enhancement suggestions are tracked as [GitHub Issues](https://github.com/vit-h/windows-speedup-via-cleanup/issues).
 
 **When suggesting an enhancement, include:**
+
 - Clear description of the feature
 - Why it would be useful
 - Example use case
@@ -29,31 +31,36 @@ Enhancement suggestions are tracked as [GitHub Issues](https://github.com/vit-h/
 
 1. **Fork the repository**
 2. **Create a feature branch:**
+
    ```bash
    git checkout -b feature/amazing-feature
    ```
 
 3. **Make your changes:**
+
    - Follow PowerShell best practices
    - Add inline comments for complex logic
    - Update parameter descriptions
    - Test with `-DryRun` first
 
 4. **Test thoroughly:**
+
    ```powershell
    # Always test in dry-run mode first
    .\Clean-AllTemps-NoDownloads.ps1 -DryRun
-   
+
    # Then test actual execution
    .\Clean-AllTemps-NoDownloads.ps1 -YourNewParameter -DryRun:$false
    ```
 
 5. **Update documentation:**
+
    - Add parameter to README.md
    - Update examples if needed
    - Add to CHANGELOG.md
 
 6. **Commit with clear messages:**
+
    ```bash
    git commit -m "feat: Add support for clearing XYZ cache"
    ```
@@ -76,6 +83,7 @@ Enhancement suggestions are tracked as [GitHub Issues](https://github.com/vit-h/
 ### Safety Requirements
 
 **CRITICAL:** All new cleanup operations MUST:
+
 1. ✅ Respect Downloads folder protection (`Assert-NotDownloads`)
 2. ✅ Support `-DryRun` mode
 3. ✅ Log all actions via `Log` function
@@ -94,13 +102,13 @@ param(
 # 2. Add cleanup section
 if ($ClearNewCache) {
   Log-Section "New Cache Cleanup"
-  
+
   # Define paths
   $cachePaths = @(
     '{UserProfile}\AppData\Local\NewApp\Cache',
     '$env:ProgramData\NewApp\Cache'
   )
-  
+
   # Use helper function
   Clear-PathTemplates -Templates $cachePaths -AllUsers:$AllUsers
 }
@@ -113,6 +121,7 @@ if ($ClearNewCache) {
 ### Testing Checklist
 
 Before submitting PR:
+
 - [ ] Tested with `-DryRun` (preview works correctly)
 - [ ] Tested with `-DryRun:$false` (actual cleanup works)
 - [ ] Tested with `-AllUsers` (if applicable)
@@ -135,6 +144,7 @@ Use conventional commits:
 - `chore:` Maintenance
 
 **Examples:**
+
 ```
 feat: Add support for Rust cargo cache cleanup
 fix: Prevent error when Docker daemon not running
@@ -144,9 +154,8 @@ refactor: Extract common path expansion logic
 
 ## Questions?
 
-- **Issues:** [GitHub Issues](https://github.com/vit-h/windows-cleanup-script/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/vit-h/windows-cleanup-script/discussions)
+- **Issues:** [GitHub Issues](https://github.com/vit-h/windows-speedup-via-cleanup/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/vit-h/windows-speedup-via-cleanup/discussions)
 - **LinkedIn:** [vit-h](https://www.linkedin.com/in/vit-h/)
 
 Thank you for contributing! 🚀
-

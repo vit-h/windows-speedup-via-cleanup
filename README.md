@@ -20,11 +20,11 @@
 
 Three cleanup modes optimized for different scenarios:
 
-| Mode                                  | Packages Kept     | Packages Purged | Restore Time  | Use Case            |
-| ------------------------------------- | ----------------- | --------------- | ------------- | ------------------- |
-| **Safe** (`-IncludeDevCaches`)        | All packages      | 0               | Instant       | Daily cleanup       |
-| **Smart** (`-SelectivePurgeNuGet`) ⭐ | Framework (~75%)  | Third-party     | ~1-2 minutes  | Weekly maintenance  |
-| **Nuclear** (`-PurgeNuGetPackages`)   | 0                 | All packages    | 15-25 minutes | Fresh clone testing |
+| Mode                                  | Packages Kept    | Packages Purged | Restore Time  | Use Case            |
+| ------------------------------------- | ---------------- | --------------- | ------------- | ------------------- |
+| **Safe** (`-IncludeDevCaches`)        | All packages     | 0               | Instant       | Daily cleanup       |
+| **Smart** (`-SelectivePurgeNuGet`) ⭐ | Framework (~75%) | Third-party     | ~1-2 minutes  | Weekly maintenance  |
+| **Nuclear** (`-PurgeNuGetPackages`)   | 0                | All packages    | 15-25 minutes | Fresh clone testing |
 
 > 💡 **Example:** In a typical ASP.NET project with 288 packages, Smart Mode keeps ~225 framework packages and purges ~63 third-party packages.
 
@@ -50,8 +50,8 @@ Three cleanup modes optimized for different scenarios:
 
    ```powershell
    # Clone the repository
-   git clone https://github.com/vit-h/windows-cleanup-script.git
-   cd windows-cleanup-script
+   git clone https://github.com/vit-h/windows-speedup-via-cleanup.git
+   cd windows-speedup-via-cleanup
    ```
 
 2. **Run as Administrator** (required for system-level cleanup)
@@ -148,11 +148,11 @@ Three cleanup modes optimized for different scenarios:
 
 ### Dev Cache Options
 
-| Parameter              | Description                          | Restore Time  |
-| ---------------------- | ------------------------------------ | ------------- |
-| `-IncludeDevCaches`    | ✅ SAFE: Clear temp/HTTP only        | Instant       |
-| `-SelectivePurgeNuGet` | 💡 SMART: Keep framework (~75%)      | ~1-2 minutes  |
-| `-PurgeNuGetPackages`  | 🚨 NUCLEAR: Delete all packages      | 15-25 minutes |
+| Parameter              | Description                     | Restore Time  |
+| ---------------------- | ------------------------------- | ------------- |
+| `-IncludeDevCaches`    | ✅ SAFE: Clear temp/HTTP only   | Instant       |
+| `-SelectivePurgeNuGet` | 💡 SMART: Keep framework (~75%) | ~1-2 minutes  |
+| `-PurgeNuGetPackages`  | 🚨 NUCLEAR: Delete all packages | 15-25 minutes |
 
 ### Browser & System
 
@@ -258,11 +258,11 @@ Three cleanup modes optimized for different scenarios:
 
 ### Time Savings
 
-| Operation           | Before (Nuclear) | After (Smart Selective) | Improvement       |
-| ------------------- | ---------------- | ----------------------- | ----------------- |
-| NuGet restore       | 15-25 min        | 1-2 min                 | **90%+ faster**   |
-| Build after cleanup | Slow             | Fast                    | Fewer file locks  |
-| Defender scans      | Slow             | Fast                    | Excluded temp     |
+| Operation           | Before (Nuclear) | After (Smart Selective) | Improvement      |
+| ------------------- | ---------------- | ----------------------- | ---------------- |
+| NuGet restore       | 15-25 min        | 1-2 min                 | **90%+ faster**  |
+| Build after cleanup | Slow             | Fast                    | Fewer file locks |
+| Defender scans      | Slow             | Fast                    | Excluded temp    |
 
 ## 🛡️ Safety Guarantees
 
@@ -317,8 +317,8 @@ Logs include:
 
 Contributions are welcome! Here's how you can help:
 
-1. **Report Issues:** Found a bug? [Open an issue](https://github.com/vit-h/windows-cleanup-script/issues)
-2. **Suggest Features:** Have an idea? [Start a discussion](https://github.com/vit-h/windows-cleanup-script/discussions)
+1. **Report Issues:** Found a bug? [Open an issue](https://github.com/vit-h/windows-speedup-via-cleanup/issues)
+2. **Suggest Features:** Have an idea? [Start a discussion](https://github.com/vit-h/windows-speedup-via-cleanup/discussions)
 3. **Submit PRs:**
    - Fork the repository
    - Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -357,8 +357,8 @@ The authors are not responsible for any data loss or system issues.
 
 ## 📞 Support
 
-- **Issues:** [GitHub Issues](https://github.com/vit-h/windows-cleanup-script/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/vit-h/windows-cleanup-script/discussions)
+- **Issues:** [GitHub Issues](https://github.com/vit-h/windows-speedup-via-cleanup/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/vit-h/windows-speedup-via-cleanup/discussions)
 - **LinkedIn:** [vit-h](https://www.linkedin.com/in/vit-h/)
 
 ---
