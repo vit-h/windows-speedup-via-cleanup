@@ -11,8 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 🎉 **Initial public release**
 - Smart NuGet package management with three modes:
   - Safe mode: Clears temp/HTTP cache only (instant restore)
-  - Selective mode: Keeps 225 framework packages, purges 63 third-party (1-min restore)
-  - Nuclear mode: Deletes all 288 packages (15-25 min restore)
+  - Selective mode: Keeps ~75% framework packages, purges ~25% third-party (1-2 min restore)
+  - Nuclear mode: Deletes all packages (15-25 min restore)
 - Multi-user support via `-AllUsers` flag
 - Windows Defender exclusions for performance boost
 - SSD TRIM optimization for all drives
@@ -69,7 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Error handling with graceful fallbacks
 
 ### Performance
-- 93% faster NuGet restore with selective purge (1 min vs 15-25 min)
+- 90%+ faster NuGet restore with selective purge (1-2 min vs 15-25 min)
 - Multi-user path expansion (single function handles all users)
 - Consolidated summary output (no per-file spam)
 - Efficient helper functions reduce duplication

@@ -9,6 +9,7 @@
 ## 🌟 Features
 
 ### Core Cleanup
+
 - ✅ **Safe & Aggressive**: Hard protection for Downloads folder
 - ✅ **Multi-User Support**: Clean temp/cache for all user profiles
 - ✅ **Browser Caches**: Chrome, Edge, Firefox (all profiles)
@@ -19,21 +20,25 @@
 
 Three cleanup modes optimized for different scenarios:
 
-| Mode | Packages Kept | Packages Purged | Restore Time | Use Case |
-|------|---------------|-----------------|--------------|----------|
-| **Safe** (`-IncludeDevCaches`) | 288 (all) | 0 | Instant | Daily cleanup |
-| **Smart** (`-SelectivePurgeNuGet`) ⭐ | 225 | 63 | ~1 minute | Weekly maintenance |
-| **Nuclear** (`-PurgeNuGetPackages`) | 0 | 288 | 15-25 minutes | Fresh clone testing |
+| Mode                                  | Packages Kept     | Packages Purged | Restore Time  | Use Case            |
+| ------------------------------------- | ----------------- | --------------- | ------------- | ------------------- |
+| **Safe** (`-IncludeDevCaches`)        | All packages      | 0               | Instant       | Daily cleanup       |
+| **Smart** (`-SelectivePurgeNuGet`) ⭐ | Framework (~75%)  | Third-party     | ~1-2 minutes  | Weekly maintenance  |
+| **Nuclear** (`-PurgeNuGetPackages`)   | 0                 | All packages    | 15-25 minutes | Fresh clone testing |
 
-**Smart Mode** keeps stable framework packages (Microsoft.*, System.*, testing, gRPC, database, logging) while purging frequently-updated third-party packages (cloud services, utilities).
+> 💡 **Example:** In a typical ASP.NET project with 288 packages, Smart Mode keeps ~225 framework packages and purges ~63 third-party packages.
+
+**Smart Mode** keeps stable framework packages (Microsoft._, System._, testing, gRPC, database, logging) while purging frequently-updated third-party packages (cloud services, utilities).
 
 ### Performance Boosters
+
 - 🔥 **Windows Defender Exclusions**: Exclude temp/cache folders for CPU/disk boost
 - 🔥 **SSD TRIM**: Optimize all SSD drives
 - 🔥 **Font Cache Rebuild**: Fix slow app launches
 - 🔥 **Multi-Threading**: Parallel cleanup operations
 
 ### Safety Features
+
 - 🛡️ **Downloads Protection**: Never touches Downloads folder (including OneDrive redirection)
 - 🛡️ **Process Detection**: Warns if dev tools are running (file lock prevention)
 - 🛡️ **Dry-Run Mode**: Preview changes before applying
@@ -42,6 +47,7 @@ Three cleanup modes optimized for different scenarios:
 ## 📥 Installation
 
 1. **Download the script:**
+
    ```powershell
    # Clone the repository
    git clone https://github.com/vit-h/windows-cleanup-script.git
@@ -59,7 +65,7 @@ Three cleanup modes optimized for different scenarios:
 # 2. Daily/Safe cleanup (temp/cache only, packages preserved)
 .\Clean-AllTemps-NoDownloads.ps1 -IncludeBrowsers -IncludeDevCaches -KillBrowsers -KillDevTools -DryRun:$false
 
-# 3. Weekly smart purge (⭐ RECOMMENDED - keeps framework, purges 63 third-party)
+# 3. Weekly smart purge (⭐ RECOMMENDED - keeps framework, purges third-party)
 .\Clean-AllTemps-NoDownloads.ps1 -SelectivePurgeNuGet -DryRun:$false
 ```
 
@@ -134,46 +140,46 @@ Three cleanup modes optimized for different scenarios:
 
 ### Core Cleanup Options
 
-| Parameter | Description | Impact |
-|-----------|-------------|--------|
-| `-DryRun` | Preview mode (default: `$true`) | Shows what would be cleaned |
-| `-Aggressive` | Enable all safe cleanup operations | More thorough cleanup |
-| `-AllUsers` | Clean for all user profiles | Multi-user systems |
+| Parameter     | Description                        | Impact                      |
+| ------------- | ---------------------------------- | --------------------------- |
+| `-DryRun`     | Preview mode (default: `$true`)    | Shows what would be cleaned |
+| `-Aggressive` | Enable all safe cleanup operations | More thorough cleanup       |
+| `-AllUsers`   | Clean for all user profiles        | Multi-user systems          |
 
 ### Dev Cache Options
 
-| Parameter | Description | Restore Time |
-|-----------|-------------|--------------|
-| `-IncludeDevCaches` | ✅ SAFE: Clear temp/HTTP only | Instant |
-| `-SelectivePurgeNuGet` | 💡 SMART: Keep 225 packages | ~1 minute |
-| `-PurgeNuGetPackages` | 🚨 NUCLEAR: Delete all 288 | 15-25 minutes |
+| Parameter              | Description                          | Restore Time  |
+| ---------------------- | ------------------------------------ | ------------- |
+| `-IncludeDevCaches`    | ✅ SAFE: Clear temp/HTTP only        | Instant       |
+| `-SelectivePurgeNuGet` | 💡 SMART: Keep framework (~75%)      | ~1-2 minutes  |
+| `-PurgeNuGetPackages`  | 🚨 NUCLEAR: Delete all packages      | 15-25 minutes |
 
 ### Browser & System
 
-| Parameter | Description |
-|-----------|-------------|
-| `-IncludeBrowsers` | Clean browser caches (Chrome, Edge, Firefox) |
-| `-KillBrowsers` | Auto-close browsers before cleanup |
-| `-PurgeUpdateCaches` | Clear Windows Update cache |
-| `-PurgeDeliveryOptCaches` | Clear Delivery Optimization cache |
-| `-RunWindowsBuiltins` | Run cleanmgr, DISM, SFC |
+| Parameter                 | Description                                  |
+| ------------------------- | -------------------------------------------- |
+| `-IncludeBrowsers`        | Clean browser caches (Chrome, Edge, Firefox) |
+| `-KillBrowsers`           | Auto-close browsers before cleanup           |
+| `-PurgeUpdateCaches`      | Clear Windows Update cache                   |
+| `-PurgeDeliveryOptCaches` | Clear Delivery Optimization cache            |
+| `-RunWindowsBuiltins`     | Run cleanmgr, DISM, SFC                      |
 
 ### Performance Boosters
 
-| Parameter | Description |
-|-----------|-------------|
+| Parameter              | Description                                    |
+| ---------------------- | ---------------------------------------------- |
 | `-ExcludeFromDefender` | Exclude temp/cache from Windows Defender scans |
-| `-ClearFontCache` | Rebuild font cache (fixes slow app launches) |
-| `-ClearThumbs` | Clear thumbnail database |
-| `-ClearIconCache` | Clear icon cache |
-| `-ResetWindowsStore` | Reset Windows Store cache |
+| `-ClearFontCache`      | Rebuild font cache (fixes slow app launches)   |
+| `-ClearThumbs`         | Clear thumbnail database                       |
+| `-ClearIconCache`      | Clear icon cache                               |
+| `-ResetWindowsStore`   | Reset Windows Store cache                      |
 
 ### Safety & Process Control
 
-| Parameter | Description |
-|-----------|-------------|
-| `-Force` | Silence process detection warnings |
-| `-KillDevTools` | Auto-close dev tools (VS, VS Code, etc.) |
+| Parameter                  | Description                              |
+| -------------------------- | ---------------------------------------- |
+| `-Force`                   | Silence process detection warnings       |
+| `-KillDevTools`            | Auto-close dev tools (VS, VS Code, etc.) |
 | `-EnforceNoDownloadsClean` | Ensure Downloads folder is never touched |
 
 ## 📊 What Gets Cleaned
@@ -215,10 +221,13 @@ Three cleanup modes optimized for different scenarios:
 <details>
 <summary><b>Selective NuGet Purge (with -SelectivePurgeNuGet)</b></summary>
 
-**Keeps (225 packages, 1.2 GB):**
-- Microsoft.AspNetCore.*
-- Microsoft.Extensions.*
-- System.*
+> 📊 **Example:** Based on a typical ASP.NET Core project. Actual numbers vary by project.
+
+**Keeps (~75% of packages):**
+
+- Microsoft.AspNetCore.\*
+- Microsoft.Extensions.\*
+- System.\*
 - Testing (xUnit, TestPlatform, FluentAssertions)
 - Code Analysis (Roslyn)
 - gRPC/Protobuf
@@ -228,7 +237,8 @@ Three cleanup modes optimized for different scenarios:
 - Validation (FluentValidation)
 - Messaging (MassTransit)
 
-**Purges (63 packages, 550 MB):**
+**Purges (~25% of packages):**
+
 - Cloud services (AWS, Stripe, Twilio, Firebase)
 - Health checks
 - Test helpers (AutoFixture, Bogus, TestContainers)
@@ -239,20 +249,20 @@ Three cleanup modes optimized for different scenarios:
 
 ### Storage Freed (Typical Results)
 
-| System State | Space Freed |
-|--------------|-------------|
-| Fresh Windows install | ~500 MB - 1 GB |
-| Daily use (1 week) | ~2-5 GB |
-| Developer machine (1 month) | ~10-20 GB |
-| With full NuGet purge | +1.5-3 GB |
+| System State                | Space Freed    |
+| --------------------------- | -------------- |
+| Fresh Windows install       | ~500 MB - 1 GB |
+| Daily use (1 week)          | ~2-5 GB        |
+| Developer machine (1 month) | ~10-20 GB      |
+| With full NuGet purge       | +1.5-3 GB      |
 
 ### Time Savings
 
-| Operation | Before | After | Improvement |
-|-----------|--------|-------|-------------|
-| NuGet full restore | 15-25 min | 1 min (selective) | **93% faster** |
-| Build after cleanup | Slow | Fast | Fewer file locks |
-| Defender scans | Slow | Fast | Excluded temp folders |
+| Operation           | Before (Nuclear) | After (Smart Selective) | Improvement       |
+| ------------------- | ---------------- | ----------------------- | ----------------- |
+| NuGet restore       | 15-25 min        | 1-2 min                 | **90%+ faster**   |
+| Build after cleanup | Slow             | Fast                    | Fewer file locks  |
+| Defender scans      | Slow             | Fast                    | Excluded temp     |
 
 ## 🛡️ Safety Guarantees
 
@@ -267,6 +277,7 @@ Three cleanup modes optimized for different scenarios:
 ### Process Detection
 
 The script detects running dev processes and warns before cleanup:
+
 - Visual Studio
 - MSBuild, Roslyn Compiler
 - dotnet SDK/runtime
@@ -279,11 +290,13 @@ The script detects running dev processes and warns before cleanup:
 ## 📝 Logging
 
 All operations are logged to:
+
 ```
 C:\ProgramData\CleanupLogs\Clean-AllTemps-YYYYMMDD-HHMMSS.log
 ```
 
 Logs include:
+
 - ✅ Operations performed
 - ⚠️ Warnings and skipped items
 - 📊 Summary (files removed, space freed)
@@ -306,7 +319,7 @@ Contributions are welcome! Here's how you can help:
 
 1. **Report Issues:** Found a bug? [Open an issue](https://github.com/vit-h/windows-cleanup-script/issues)
 2. **Suggest Features:** Have an idea? [Start a discussion](https://github.com/vit-h/windows-cleanup-script/discussions)
-3. **Submit PRs:** 
+3. **Submit PRs:**
    - Fork the repository
    - Create a feature branch (`git checkout -b feature/amazing-feature`)
    - Commit your changes (`git commit -m 'Add amazing feature'`)
@@ -328,6 +341,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## ⚠️ Disclaimer
 
 **Use at your own risk.** While this script has extensive safety features:
+
 - Always run with `-DryRun` first to preview changes
 - Close all applications before running
 - Ensure you have backups of important data
@@ -345,11 +359,10 @@ The authors are not responsible for any data loss or system issues.
 
 - **Issues:** [GitHub Issues](https://github.com/vit-h/windows-cleanup-script/issues)
 - **Discussions:** [GitHub Discussions](https://github.com/vit-h/windows-cleanup-script/discussions)
-- **Email:** vitalii.hon@gmail.com
+- **LinkedIn:** [vit-h](https://www.linkedin.com/in/vit-h/)
 
 ---
 
 **⭐ If this script helped you, please consider starring the repository!**
 
 Made with ❤️ by [vit-h](https://github.com/vit-h)
-

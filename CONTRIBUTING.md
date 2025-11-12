@@ -146,7 +146,7 @@ refactor: Extract common path expansion logic
 
 - **Issues:** [GitHub Issues](https://github.com/vit-h/windows-cleanup-script/issues)
 - **Discussions:** [GitHub Discussions](https://github.com/vit-h/windows-cleanup-script/discussions)
-- **Email:** vitalii.hon@gmail.com
+- **LinkedIn:** [vit-h](https://www.linkedin.com/in/vit-h/)
 
 Thank you for contributing! 🚀
 
