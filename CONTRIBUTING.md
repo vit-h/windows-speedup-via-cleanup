@@ -47,10 +47,10 @@ Enhancement suggestions are tracked as [GitHub Issues](https://github.com/vit-h/
 
    ```powershell
    # Always test in dry-run mode first
-   .\Clean-AllTemps-NoDownloads.ps1 -DryRun
+   .\src\Invoke-WindowsCleanup.ps1 -DryRun
 
    # Then test actual execution
-   .\Clean-AllTemps-NoDownloads.ps1 -YourNewParameter -DryRun:$false
+   .\src\Invoke-WindowsCleanup.ps1 -YourNewParameter -DryRun:$false
    ```
 
 5. **Update documentation:**

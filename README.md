@@ -16,20 +16,6 @@
 - ✅ **System Maintenance**: Windows Update cache, Delivery Optimization, Prefetch
 - ✅ **Dev Tools**: npm, yarn, pnpm, NuGet, VS Code, Visual Studio, Docker, WSL
 
-### 🚀 Smart NuGet Management (Unique Feature!)
-
-Three cleanup modes optimized for different scenarios:
-
-| Mode                                  | Packages Kept    | Packages Purged | Restore Time  | Use Case            |
-| ------------------------------------- | ---------------- | --------------- | ------------- | ------------------- |
-| **Safe** (`-IncludeDevCaches`)        | All packages     | 0               | Instant       | Daily cleanup       |
-| **Smart** (`-SelectivePurgeNuGet`) ⭐ | Framework (~75%) | Third-party     | ~1-2 minutes  | Weekly maintenance  |
-| **Nuclear** (`-PurgeNuGetPackages`)   | 0                | All packages    | 15-25 minutes | Fresh clone testing |
-
-> 💡 **Example:** In a typical ASP.NET project with 288 packages, Smart Mode keeps ~225 framework packages and purges ~63 third-party packages.
-
-**Smart Mode** keeps stable framework packages (Microsoft._, System._, testing, gRPC, database, logging) while purging frequently-updated third-party packages (cloud services, utilities).
-
 ### Performance Boosters
 
 - 🔥 **Windows Defender Exclusions**: Exclude temp/cache folders for CPU/disk boost
@@ -60,13 +46,13 @@ Three cleanup modes optimized for different scenarios:
 
 ```powershell
 # 1. Preview what will be cleaned (DRY RUN - always test first!)
-.\Clean-AllTemps-NoDownloads.ps1 -DryRun
+.\src\Invoke-WindowsCleanup.ps1 -DryRun
 
 # 2. Daily/Safe cleanup (temp/cache only, packages preserved)
-.\Clean-AllTemps-NoDownloads.ps1 -IncludeBrowsers -IncludeDevCaches -KillBrowsers -KillDevTools -DryRun:$false
+.\src\Invoke-WindowsCleanup.ps1 -IncludeBrowsers -IncludeDevCaches -KillBrowsers -KillDevTools -DryRun:$false
 
 # 3. Weekly smart purge (⭐ RECOMMENDED - keeps framework, purges third-party)
-.\Clean-AllTemps-NoDownloads.ps1 -SelectivePurgeNuGet -DryRun:$false
+.\src\Invoke-WindowsCleanup.ps1 -SelectivePurgeNuGet -DryRun:$false
 ```
 
 ## 📖 Usage Examples
@@ -75,7 +61,7 @@ Three cleanup modes optimized for different scenarios:
 
 ```powershell
 # ✅ DAILY: Safe cleanup (no package deletion)
-.\Clean-AllTemps-NoDownloads.ps1 `
+.\src\Invoke-WindowsCleanup.ps1 `
   -IncludeBrowsers `
   -IncludeDevCaches `
   -KillBrowsers `
@@ -83,12 +69,12 @@ Three cleanup modes optimized for different scenarios:
   -DryRun:$false
 
 # 💡 WEEKLY: Smart selective purge (~1 min restore)
-.\Clean-AllTemps-NoDownloads.ps1 `
+.\src\Invoke-WindowsCleanup.ps1 `
   -SelectivePurgeNuGet `
   -DryRun:$false
 
 # 🚀 MONTHLY: Ultra comprehensive cleanup
-.\Clean-AllTemps-NoDownloads.ps1 `
+.\src\Invoke-WindowsCleanup.ps1 `
   -Aggressive `
   -IncludeBrowsers `
   -IncludeDevCaches `
@@ -112,7 +98,7 @@ Three cleanup modes optimized for different scenarios:
 
 ```powershell
 # Dev cache cleanup (npm, yarn, pnpm, NuGet temp, VS, Docker, etc.)
-.\Clean-AllTemps-NoDownloads.ps1 `
+.\src\Invoke-WindowsCleanup.ps1 `
   -IncludeDevCaches `
   -PythonPipCache `
   -RustCargoCache `
@@ -129,7 +115,7 @@ Three cleanup modes optimized for different scenarios:
 
 ```powershell
 # Clean temp/cache for ALL user profiles on this PC
-.\Clean-AllTemps-NoDownloads.ps1 `
+.\src\Invoke-WindowsCleanup.ps1 `
   -IncludeBrowsers `
   -IncludeDevCaches `
   -AllUsers `
@@ -181,6 +167,20 @@ Three cleanup modes optimized for different scenarios:
 | `-Force`                   | Silence process detection warnings       |
 | `-KillDevTools`            | Auto-close dev tools (VS, VS Code, etc.) |
 | `-EnforceNoDownloadsClean` | Ensure Downloads folder is never touched |
+
+### 🚀 Smart NuGet Management (Unique Feature!)
+
+Three cleanup modes optimized for different scenarios:
+
+| Mode                                  | Packages Kept    | Packages Purged | Restore Time  | Use Case            |
+| ------------------------------------- | ---------------- | --------------- | ------------- | ------------------- |
+| **Safe** (`-IncludeDevCaches`)        | All packages     | 0               | Instant       | Daily cleanup       |
+| **Smart** (`-SelectivePurgeNuGet`) ⭐ | Framework (~75%) | Third-party     | ~1-2 minutes  | Weekly maintenance  |
+| **Nuclear** (`-PurgeNuGetPackages`)   | 0                | All packages    | 15-25 minutes | Fresh clone testing |
+
+> 💡 **Example:** In a typical ASP.NET project with 288 packages, Smart Mode keeps ~225 framework packages and purges ~63 third-party packages.
+
+**Smart Mode** keeps stable framework packages (Microsoft._, System._, testing, gRPC, database, logging) while purging frequently-updated third-party packages (cloud services, utilities).
 
 ## 📊 What Gets Cleaned
 

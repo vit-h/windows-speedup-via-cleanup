@@ -1,5 +1,5 @@
 <#
-Clean-AllTemps-NoDownloads.ps1
+Invoke-WindowsCleanup.ps1
 Aggressive but safe Windows 11 cleanup with HARD protection for Downloads, multi-profile browser/dev cache purges,
 optional Windows Update/DeliveryOptimization cache clears, optional Windows built-ins (cleanmgr/DISM/SFC), and SSD ReTrim.
 
@@ -30,29 +30,29 @@ Run as Administrator. First run with -DryRun to preview.
 
 Examples:
   # 🔍 Preview mode (always test first!)
-  .\Clean-AllTemps-NoDownloads.ps1 -DryRun
+  .\Invoke-WindowsCleanup.ps1 -DryRun
 
   # ✅ RECOMMENDED: Daily/Safe cleanup (temp/cache only, packages preserved)
-  .\Clean-AllTemps-NoDownloads.ps1 -IncludeBrowsers -IncludeDevCaches -KillBrowsers -KillDevTools -DryRun:$false
+  .\Invoke-WindowsCleanup.ps1 -IncludeBrowsers -IncludeDevCaches -KillBrowsers -KillDevTools -DryRun:$false
 
   # 💡 RECOMMENDED: Weekly smart purge (keeps framework, purges 63 third-party packages, ~1 min restore)
-  .\Clean-AllTemps-NoDownloads.ps1 -SelectivePurgeNuGet -DryRun:$false
+  .\Invoke-WindowsCleanup.ps1 -SelectivePurgeNuGet -DryRun:$false
   
   # 🔧 Balanced (adds Windows Update/DeliveryOptimization cache purge)
-  .\Clean-AllTemps-NoDownloads.ps1 -IncludeBrowsers -IncludeDevCaches -PurgeUpdateCaches -PurgeDeliveryOptCaches -KillBrowsers -KillDevTools -RunWindowsBuiltins -DryRun:$false
+  .\Invoke-WindowsCleanup.ps1 -IncludeBrowsers -IncludeDevCaches -PurgeUpdateCaches -PurgeDeliveryOptCaches -KillBrowsers -KillDevTools -RunWindowsBuiltins -DryRun:$false
 
   # 🚀 Ultra comprehensive (everything except NuGet packages)
-  .\Clean-AllTemps-NoDownloads.ps1 -Aggressive -IncludeBrowsers -IncludeDevCaches -PurgeUpdateCaches -PurgeDeliveryOptCaches -ClearThumbs -ClearIconCache -IncludePrefetch -KillBrowsers -KillDevTools -DockerPrune -WSLCleanup -AngularCacheClean -JetBrainsCaches -MSBuildExtraClean -ClearFontCache -ResetWindowsStore -ClearNotificationsDB -ClearRecentJumpLists -ExcludeFromDefender -RunWindowsBuiltins -AllUsers -DryRun:$false
+  .\Invoke-WindowsCleanup.ps1 -Aggressive -IncludeBrowsers -IncludeDevCaches -PurgeUpdateCaches -PurgeDeliveryOptCaches -ClearThumbs -ClearIconCache -IncludePrefetch -KillBrowsers -KillDevTools -DockerPrune -WSLCleanup -AngularCacheClean -JetBrainsCaches -MSBuildExtraClean -ClearFontCache -ResetWindowsStore -ClearNotificationsDB -ClearRecentJumpLists -ExcludeFromDefender -RunWindowsBuiltins -AllUsers -DryRun:$false
   
   # 🧪 Dev-focused (adds Python/Rust/Go/Gradle/Maven caches + Defender exclusions)
-  .\Clean-AllTemps-NoDownloads.ps1 -IncludeDevCaches -PythonPipCache -RustCargoCache -GoModCache -GradleCache -JetBrainsCaches -MSBuildExtraClean -ExcludeFromDefender -DryRun:$false
+  .\Invoke-WindowsCleanup.ps1 -IncludeDevCaches -PythonPipCache -RustCargoCache -GoModCache -GradleCache -JetBrainsCaches -MSBuildExtraClean -ExcludeFromDefender -DryRun:$false
   
   # 🚨 NUCLEAR (RARELY NEEDED): Fresh clone simulation - DELETES ALL 288 packages, 15-25 min restore
   #    ⚠️  Use -SelectivePurgeNuGet instead in 95% of cases!
-  .\Clean-AllTemps-NoDownloads.ps1 -PurgeNuGetPackages -DryRun:$false
+  .\Invoke-WindowsCleanup.ps1 -PurgeNuGetPackages -DryRun:$false
   
   # 🔇 Silence process warnings (script warns but continues by default)
-  .\Clean-AllTemps-NoDownloads.ps1 -IncludeDevCaches -Force -DryRun:$false
+  .\Invoke-WindowsCleanup.ps1 -IncludeDevCaches -Force -DryRun:$false
 #>
 
 [CmdletBinding(SupportsShouldProcess)]
@@ -1486,7 +1486,7 @@ if (-not $DryRun -and $script:DeferredOperations.Count -gt 0) {
     if ($IISLogs) { $rerunParams += "-IISLogs" }
     $rerunParams += "-DryRun:`$false"
     
-    $rerunCmd = ".\Clean-AllTemps-NoDownloads.ps1 $($rerunParams -join ' ')"
+    $rerunCmd = ".\src\Invoke-WindowsCleanup.ps1 $($rerunParams -join ' ')"
     Log "   $rerunCmd"
     Log "═══════════════════════════════════════════════════════════"
   }
