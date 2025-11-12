@@ -1,0 +1,24 @@
+# Logs
+*.log
+
+# PowerShell temporary files
+*.ps1~
+
+# Windows image thumbnails
+Thumbs.db
+ehthumbs.db
+
+# System files
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test outputs
+test-*.txt
+
