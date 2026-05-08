@@ -37,7 +37,6 @@ Enhancement suggestions are tracked as [GitHub Issues](https://github.com/vit-h/
    ```
 
 3. **Make your changes:**
-
    - Follow PowerShell best practices
    - Add inline comments for complex logic
    - Update parameter descriptions
@@ -54,7 +53,6 @@ Enhancement suggestions are tracked as [GitHub Issues](https://github.com/vit-h/
    ```
 
 5. **Update documentation:**
-
    - Add parameter to README.md
    - Update examples if needed
    - Add to CHANGELOG.md
